@@ -36,4 +36,27 @@ describe("server.js", () => {
       expect(response.type).toEqual("application/json");
     });
   });
+  describe("DELETE / ", () => {
+    let data = {
+      name: "dummy"
+    };
+    it("should return an 200 okay status", async () => {
+      const response = await request(server)
+        .del("/api/moviestars/:id")
+        .send(data);
+      expect(response.status).toBe(200);
+    });
+
+    it("should return JSON object with deleted moviestar", async () => {
+      const response = await request(server)
+        .del("/api/moviestars/:id")
+        .send(data);
+      expect(response.body).toEqual(0);
+    });
+
+    it("should return application/json type", async () => {
+      const response = await request(server).del("/api/moviestars/:id");
+      expect(response.type).toEqual("application/json");
+    });
+  });
 });

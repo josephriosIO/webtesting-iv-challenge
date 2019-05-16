@@ -24,4 +24,13 @@ server.post("/api/moviestars", async (req, res) => {
   }
 });
 
+server.delete("/api/moviestars/:id", async (req, res) => {
+  try {
+    const moviestar = await moviestars.remove(req.params.id);
+    res.status(200).json(moviestar);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = server;
