@@ -38,9 +38,20 @@ describe("server.js", () => {
   });
   describe("DELETE / ", () => {
     it("should return an 200 okay status", async () => {
-      const response = await request(server).delete(`/api/moviestars/:${1}`);
+      const requestBody = {
+        name: "bob"
+      };
 
-      expect(response.status).toBe(200);
+      const res = await request(server)
+        .post("/api/moviestars")
+        .send(requestBody);
+
+      const deleted = await request(server).delete(
+        `/api/moviestars/${res.body.id}`
+      );
+
+      expect(deleted.status).toBe(200);
+      expect(deleted.body).toBe(1);
     });
 
     it("should return application/json type", async () => {
