@@ -37,21 +37,10 @@ describe("server.js", () => {
     });
   });
   describe("DELETE / ", () => {
-    let data = {
-      name: "dummy"
-    };
     it("should return an 200 okay status", async () => {
-      const response = await request(server)
-        .del("/api/moviestars/:id")
-        .send(data);
-      expect(response.status).toBe(200);
-    });
+      const response = await request(server).delete(`/api/moviestars/:${1}`);
 
-    it("should return JSON object with deleted moviestar", async () => {
-      const response = await request(server)
-        .del("/api/moviestars/:id")
-        .send(data);
-      expect(response.body).toEqual(0);
+      expect(response.status).toBe(200);
     });
 
     it("should return application/json type", async () => {

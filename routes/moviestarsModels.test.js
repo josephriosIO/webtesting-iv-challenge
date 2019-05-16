@@ -24,9 +24,10 @@ describe("moviestars models", () => {
   });
   describe("remove()", () => {
     it("should remove moviestar", async () => {
-      let moviestar = await Moviestars.remove(1);
+      let moviestar = await Moviestars.insert({ name: "Will Smith" });
+      let deleted = await Moviestars.remove(moviestar.id);
 
-      expect(0).toBe(moviestar);
+      expect(deleted).toBe(1);
     });
   });
 });
